@@ -19,8 +19,9 @@ int main()
 
     std::string userIntrodus;
     std::string parolaIntrodusa;
-
-   
+    
+    PRINT("the user should be informed how many tries are left");
+    PRINT("the program stops if you were entered wrongly the usernameand password three times");
     int number = 3;
 
     do
