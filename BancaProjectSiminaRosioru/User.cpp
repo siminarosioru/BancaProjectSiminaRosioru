@@ -16,9 +16,10 @@ bool User::Verificare(std::string& user, std::string& parola)
 	}
 	else
 	{
-		std::cout << "Datele introduse sunt gresite " << std::endl;
+		std::cout << "false information" << std::endl;
 
-		std::cout << "Apasati orice tasta pentru iesire" << std::endl;
+		std::cout << "press any key to exit" << std::endl;
+
 		_getch();
 		return false;
 	}

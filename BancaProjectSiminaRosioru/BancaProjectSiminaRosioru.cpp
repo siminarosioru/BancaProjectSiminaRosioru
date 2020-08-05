@@ -20,65 +20,84 @@ int main()
     std::string userIntrodus;
     std::string parolaIntrodusa;
 
+   
+    int number = 3;
+
     do
     {
-        PRINT("Introduceti user name: ");
+        std::cout << "the number of attempts: " << number << std::endl;
+
+        PRINT("Input the username: ");
         std::cin >> userIntrodus;
-        PRINT("Introduceti parola: ");
+        PRINT("Input the password: ");
         std::cin >> parolaIntrodusa;
-    } while (!(user->Verificare(userIntrodus, parolaIntrodusa)));
 
-    do
+        number--;
+    } while (!(user->Verificare(userIntrodus, parolaIntrodusa)) && number > 0);
+    if (user->Verificare(userIntrodus, parolaIntrodusa))
     {
-        system("cls");
-        std::cout << "Informatii" << std::endl;
-        std::cout << "MAIN MENU" << std::endl;
-        std::cout << "0: Creare Cont Nou" << std::endl;
-        std::cout << "1: Numar de Conturi Inregistrate" << std::endl;
-        std::cout << "2: Vizualizare Cont" << std::endl;
-        std::cout << "3: Modificare Cont" << std::endl;
-        std::cout << "4: Operatii Sold" << std::endl;
-        std::cout << "9: EXIT" << std::endl;
-        std::cout << "Va rugam selectati o Optiune" << std::endl;
-        std::cin >> optiuneUser;
-        std::cin.ignore();
-        system("cls");
+        PRINT("true information");
+        PRINT("press any key to exit");
+        _getch();
 
-        switch (optiuneUser)
+        do
         {
-        case 0:
-            itBank->AdaugareCont();
-            break;
-        case 1:
-            itBank->PrintConturi();
-            break;
-        case 2:
-            if (itBank->CautareCont())
-                std::cout << "Cont gasit" << std::endl;
-            else
-            {
-                PRINT("Numele cautat nu a fost gasit");
-                PRINT("Pentru creare cont apasati tasta 0");
-                PRINT("Pentru intoarcerea la meniul principal apasati tasta 1");
+            system("cls");
+            std::cout << "Informatii" << std::endl;
+            std::cout << "MAIN MENU" << std::endl;
+            std::cout << "0: Creare Cont Nou" << std::endl;
+            std::cout << "1: Numar de Conturi Inregistrate" << std::endl;
+            std::cout << "2: Vizualizare Cont" << std::endl;
+            std::cout << "3: Modificare Cont" << std::endl;
+            std::cout << "4: Operatii Sold" << std::endl;
+            std::cout << "9: EXIT" << std::endl;
+            std::cout << "Va rugam selectati o Optiune" << std::endl;
+            std::cin >> optiuneUser;
+            std::cin.ignore();
+            system("cls");
 
-                itBank->ContNou();
+            switch (optiuneUser)
+            {
+            case 0:
+                itBank->AdaugareCont();
+                break;
+            case 1:
+                itBank->PrintConturi();
+                break;
+            case 2:
+                if (itBank->CautareCont())
+                    std::cout << "Cont gasit" << std::endl;
+                else
+                {
+                    PRINT("Numele cautat nu a fost gasit");
+                    PRINT("Pentru creare cont apasati tasta 0");
+                    PRINT("Pentru intoarcerea la meniul principal apasati tasta 1");
+
+                    itBank->ContNou();
+                    break;
+                }
+                break;
+            case 3:
+                itBank->ModificareCont();
+                break;
+            case 4:
+                itBank->OperatiiSold();
+                break;
+            case 9:
+                std::cout << "Multumim pentru vizita \n";
+                running = false;
+                break;
+            default:
                 break;
             }
-            break;
-        case 3:
-            itBank->ModificareCont();
-            break;
-        case 4:
-            itBank->OperatiiSold();
-            break;
-        case 9:
-            std::cout << "Multumim pentru vizita \n";
-            running = false;
-            break;
-        default:
-            break;
-        }
-    } while (running);
+        } while (running);
+
+    }
+    else
+    {
+        PRINT("false information");
+        PRINT("You have entered a wrong username and password for three times!");
+    }
 
     delete itBank;
 }
